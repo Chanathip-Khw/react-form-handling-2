@@ -1,4 +1,33 @@
+import { useState } from "react";
+
 function ProductForm() {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
+  const [description, setDescription] = useState("");
+  const handleNameInput = (event) => {
+    setName(event.target.value);
+  };
+  const handlePriceInput = (event) => {
+    setPrice(event.target.value);
+  };
+  const handleImageInput = (event) => {
+    setImage(event.target.value);
+  };
+  const handleDescriptionInput = (event) => {
+    setDescription(event.target.value);
+  };
+  const handleAlertData = () => {
+    const alertData = {
+      name: name,
+      price: price,
+      image: image,
+      description: description,
+    };
+
+    alert(JSON.stringify(alertData));
+  };
+
   return (
     <form className="post-form">
       <h1>Create Product Form</h1>
@@ -10,7 +39,7 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            onChange={handleNameInput}
           />
         </label>
       </div>
@@ -22,7 +51,7 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            onChange={handleImageInput}
           />
         </label>
       </div>
@@ -34,7 +63,7 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            onChange={handlePriceInput}
           />
         </label>
       </div>
@@ -46,14 +75,16 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            onChange={handleDescriptionInput}
             rows={4}
             cols={30}
           />
         </label>
       </div>
       <div className="form-actions">
-        <button type="submit">Create</button>
+        <button type="submit" onClick={handleAlertData}>
+          Create
+        </button>
       </div>
     </form>
   );
